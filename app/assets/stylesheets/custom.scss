@@ -17,7 +17,7 @@ h1, h2 {
   background-color: #464646;
 
   .users-new-container {
-    padding-top: 220px;
+    padding-top: 60px;
 
     .form-group {
       margin-bottom: 20px;
@@ -30,4 +30,21 @@ h1, h2 {
   position: fixed;
   width: 100%;
   z-index: 10000;
+}
+
+.navbar-transparent {
+  margin-bottom: 0px;
+  background-color: rgba(0,0,0,0.5);
+  a {
+    color: #fff !important;
+  }
+  
+  .navbar-brand {
+    padding: 0px;
+    margin-top: 15px;
+  }
+  
+  img {
+    height: 40px;
+  }
 }
