@@ -26,8 +26,13 @@ class SessionsController < ApplicationController
   def password_params
     params.require(:session).permit(:password)
   end
+  
   def log_in(user)
     session[:user_id] = user.id
+  end
+  
+  def logged_in?
+    !current_user .nil?
   end
   
   def log_out
