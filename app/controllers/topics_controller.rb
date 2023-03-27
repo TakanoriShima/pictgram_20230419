@@ -18,17 +18,8 @@ class TopicsController < ApplicationController
     end
   end
   
-  def destroy
-   favorite = Favorite.find_by(topic_id: params[:topic_id], user_id: params[:user_id])
-   favorite.destroy
-   flash[:success] = "お気に入りを解除しました"
-  end
-
   private
   def topic_params
     params.require(:topic).permit(:image, :description)
-  end
-  def favorite_padams
-    params.require(:favorite).permit(:topic_id, :user_id)
   end
 end

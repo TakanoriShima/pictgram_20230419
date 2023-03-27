@@ -13,6 +13,17 @@ class FavoritesController < ApplicationController
     else
       redirect_to topics_path, danger: 'お気に入りに登録に失敗しました'
     end
+  end  
+  
+  def destroy
+   Favorite.find_by(user_id: current_user).destroy
+   flash[:success] = "お気に入りを解除しました"
+   redirect_to topics_path
+  end
+  
+  private
+  def favorite_params
+    params.require(:favorite).permit(:topic_id, :user_id)
   end
   
 end
