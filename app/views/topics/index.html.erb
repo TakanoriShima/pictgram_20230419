@@ -19,11 +19,20 @@
               <% end %>
               <nobr><%= topic.favorite_users.size %></nobr>
              <% end %>
-             
-            <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            
+            <%= link_to new_comment_path(topic_id: topic.id) do %> 
+            　<%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <% end %>
             <p class="topic-text">
               <%= topic.description %>
             </p>
+            <h3 class="topic-text">コメント</h3>
+            <p class="topic-text">
+              <% topic.comments.each do |comment| %>
+               <br><%= comment.sentence %></br>
+              <% end %>
+            </p> 
+            
           </div>
         </div>
       </div>

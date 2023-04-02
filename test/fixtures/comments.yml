@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  topic_id: 
-  user_id: 
+  topic_id: 1
+  user_id: 1
   sentence: MyString
+  string: MyString
 
 two:
-  topic_id: 
-  user_id: 
+  topic_id: 1
+  user_id: 1
   sentence: MyString
+  string: MyString
