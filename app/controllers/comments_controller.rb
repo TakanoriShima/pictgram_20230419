@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :required_logged_in
   
   def new
     @topic_id = params[:topic_id]

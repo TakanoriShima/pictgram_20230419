@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 2023_03_29_075728) do
     t.integer "topic_id"
     t.integer "user_id"
     t.text "sentence"
-    t.string "string"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

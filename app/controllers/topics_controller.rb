@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  before_action :required_logged_in
+  
   def index
     @topics = Topic.all.includes(:favorite_users)
   end

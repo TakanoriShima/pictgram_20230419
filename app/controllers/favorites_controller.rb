@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_action :required_logged_in
+  
   def index
     @favorite_topics = current_user.favorite_topics
   end
