@@ -1,0 +1,29 @@
+<div class="topic-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1 class="text-center">Add Profile</h1>
+        <%= form_for @profile do |f| %>
+         <div class="form-group">
+           <%= f.label :写真 %>
+           <%= f.file_field :profile_image %>
+         </div>
+         
+         <div class="form-group">
+          <%= f.label :居住地 %>
+          <%= f.text_field :place, class: 'form-control' %>
+         </div>
+         
+         <div class="form-group">
+          <%= f.label :一言 %>
+          <%= f.text_area :introduce, class: 'form-control' %>
+         </div>
+        
+        <%= f.hidden_field :user_id, value: @current_user.id %>
+        <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
+        
+        <% end %> 
+      </div>
+    </div>
+  </div>
+</div>
