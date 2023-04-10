@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
   before_action :required_logged_in
   
   def index
-   @profile = @current_user.profile
+   @user = User.find_by(id: params[:user_id])  
+   @profile = @user.profile
   end
   
   def new
