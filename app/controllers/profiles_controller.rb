@@ -6,17 +6,18 @@ class ProfilesController < ApplicationController
    #@profile = @user.profile
    @profile = Profile.find(params[:id])
    @user = @profile.user
+   @topic = @profile.user.topics
   end
   
   def new
-    if user_profile_nil?(current_user)
+    if !profile_nil?(current_user)
       redirect_to profile_path(current_user.profile)
     end
     @profile = Profile.new
   end
   
   def create
-    if user_profile_nil?(current_user)
+    if !profile_nil?(current_user)
       redirect_to profile_path(current_user.profile)
     end
     
