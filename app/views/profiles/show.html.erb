@@ -38,6 +38,11 @@
                 <%= link_to new_comment_path(topic_id: topic.id) do %> 
                 　<%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
                 <% end %>
+                <% if topic.user_id == current_user.id %>
+                 <%= link_to topic_path(topic_id: topic.id), method: :delete do %> 
+              　   <%= image_tag 'icons/delete.png', class: 'topic-index-icon' %>
+                 <% end %>
+                <% end %>  
 
                 <h4 class="topic-text">コメント</h4>
                 <p class="topic-text">

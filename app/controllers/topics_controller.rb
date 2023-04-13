@@ -20,6 +20,15 @@ class TopicsController < ApplicationController
     end
   end
   
+  def destroy
+    topic = Topic.find(params[:id])
+    
+    if topic.destroy
+     redirect_to topics_path
+    end
+    
+  end
+  
   private
   def topic_params
     params.require(:topic).permit(:image, :description)
