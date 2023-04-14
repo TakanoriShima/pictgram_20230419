@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h1 class="text-center">Edit Picture</h1>
-        <%= form_for(@topic, url:edit_topic_path(@topic.id))  do |f| %>
+        <%= form_for(@topic, url: {controller: 'topics', action: 'update'})  do |f| %>
          <div class="form-group">
            <%= f.label :image %>
            <%= f.file_field :image %>
