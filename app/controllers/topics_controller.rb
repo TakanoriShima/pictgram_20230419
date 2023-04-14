@@ -20,6 +20,20 @@ class TopicsController < ApplicationController
     end
   end
   
+  def edit
+    @topic = Topic.find(params[:id])
+  end
+  
+  def update
+     @topic = Topic.find(params[:id])
+     if @topic.update
+       redirect_to topics_path, success: "投稿を更新しました"
+     else
+       flash.now[:danger] = "投稿の更新に失敗しました"
+       render :edit
+     end
+  end
+  
   def destroy
     topic = Topic.find(params[:id])
     
