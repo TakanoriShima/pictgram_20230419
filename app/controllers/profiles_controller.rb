@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
    #@profile = @user.profile
    @profile = Profile.find(params[:id])
    @user = @profile.user
-   @topic = @profile.user.topics
+   @topics = @profile.user.topics
   end
   
   def new

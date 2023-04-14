@@ -17,7 +17,7 @@
             <p class="topic-text">
               <%= @profile.introduce %>
             </p>
-            <% @topic.each do |topic|%>
+            <% @topics.each do |topic|%>
               <div class="topic-index-single">
                <h3 class="topic-text">
                 <%= topic.description %>
@@ -42,7 +42,7 @@
                  <%#= link_to edit_topic_path(topic.id), method: :edit do %>
                   <%= image_tag 'icons/edit.png', class: 'topic-index-icon' %>
                  <%# end %>
-                 <%= link_to topic_path(topic.id), method: :delete do %> 
+                 <%= link_to topic_path(topic.id), method: :delete, data: {confirm: "削除しますか？"} do %> 
               　   <%= image_tag 'icons/delete.png', class: 'topic-index-icon' %>
                  <% end %>
                 <% end %>  
