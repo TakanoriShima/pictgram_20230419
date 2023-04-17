@@ -22,6 +22,9 @@ class TopicsController < ApplicationController
   end
   
   def edit
+    unless @topic.user_id == current_user.id 
+      redirect_to topics_path
+    end
   end
   
   def update
