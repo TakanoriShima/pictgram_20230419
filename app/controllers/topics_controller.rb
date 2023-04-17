@@ -25,7 +25,7 @@ class TopicsController < ApplicationController
   end
   
   def update
-     @topic = Topic.find_by(topic_params[:id])
+     @topic = Topic.find(params[:id])
      
      if @topic.update(topic_params)
        redirect_to topics_path, success: "投稿を更新しました"
