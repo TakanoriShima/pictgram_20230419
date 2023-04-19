@@ -2,13 +2,16 @@ class CommentsController < ApplicationController
   before_action :required_logged_in
   
   def new
-    @topic_id = params[:topic_id]
+    @topic_id = params[:id]
     @comment = Comment.new
   end
   
   def create
-    @comment = current_user.comments.new(comment_params)
-  
+    
+    @topic = Topic.find(params[:id])
+    @comment = @topic.comments.new(comment_params)
+    @comment.user_id = current_user.id
+    
     if @comment.save
       redirect_to topics_path, success: '投稿に成功しました'
     else
@@ -19,6 +22,6 @@ class CommentsController < ApplicationController
 
  private
  def comment_params
-  params.require(:comment).permit(:topic_id, :user_id, :sentence)
+  params.require(:comment).permit(:sentence)
  end
 end

@@ -8,14 +8,7 @@
             <%= f.label :"コメント" %>
             <%= f.text_area :sentence, class: 'form-control' %>
           </div>
-          <%= f.hidden_field :topic_id, :value => @topic_id %>
-          <!--メンターさんには11行目のように習いましたが、下記でも一緒ですか？
-          <%= f.hidden_field :topic_id, value: @topic_id %>-->
-
-          <% if logged_in? %> 
          　<%= f.submit '投稿', class: 'btn btn-black btn-block' %>
-        　<% end %>
-
         <% end %>
       </div>
     </div>

@@ -7,6 +7,14 @@ class ProfilesController < ApplicationController
    @profile = Profile.find(params[:id])
    @user = @profile.user
    @topics = @profile.user.topics
+   @flag = false
+   
+   @follow = Follow.find_by(user_id: current_user.id, follow_id: @user.id)
+   if !@follow.nil?
+     @follow_flag = true
+   else
+     @follow_flag = false
+   end
   end
   
   def new

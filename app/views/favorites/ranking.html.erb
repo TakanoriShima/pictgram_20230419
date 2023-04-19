@@ -1,10 +1,19 @@
 <div class="topic-index-wrapper">
   <div class="container">
-    <% topics.each do |topic| %>
+    <% i = 1 %>
+    <% before_count = @topics.first.favorite_users.count %>
+    <% @topics.each do |topic| %>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <div class="topic-index-single">
-            <% if flag %>    
+            <% if @flag %>
+            <% 
+              if topic.favorite_users.count < before_count
+                i = i + 1
+              end
+              before_count = topic.favorite_users.count
+            %>
+            <h3 class="ranking"><%= i %>位</h3>    
             <h2 class="topic-author">
              <% if !topic.user.profile.nil? %>    
               <%= link_to profile_path(topic.user.profile.id) do %>      
@@ -45,7 +54,7 @@
             <h3 class="topic-text">コメント</h3>
             <p class="topic-text">
               <% topic.comments.each do |comment| %>
-               <br><%= image_tag !comment.user.profile.nil? ? comment.user.profile.profile_image.url : 'icons/profile.png', class: 'comment_profile_image' %>  <%= link_to comment.user.name, profile_path(comment.user.profile) %>: <%= comment.sentence %>    - <%= comment.created_at.strftime("%Y年 %m月 %d日") %></br>
+               <br><%= image_tag !comment.user.profile.nil? ? comment.user.profile.profile_image.url : 'icons/profile.png', class: 'comment_profile_image' %>  <%= comment.user.name %>: <%= comment.sentence %>    - <%= comment.created_at.strftime("%Y年 %m月 %d日") %></br>
               <% end %>
             </p> 
             

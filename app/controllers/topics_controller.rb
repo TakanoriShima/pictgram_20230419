@@ -4,6 +4,7 @@ class TopicsController < ApplicationController
   
   def index
     @topics = Topic.all.includes(:favorite_users)
+    @flag = true
   end
   
   def new

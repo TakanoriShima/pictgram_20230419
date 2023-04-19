@@ -2,62 +2,32 @@
   <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <div class="topic-index-single">
-            <h2 class="topic-author">
-              <%= @user.name %>
-            </h2>
-            <div class="profile-image">
-             <%= image_tag @profile.profile_image.url %>
-            </div>
-            <h4 class="topic-text">居住地</h4>
-            <p class="topic-text">
-              <%= @profile.place %>
-            </p>
-            <h4 class="topic-text">一言</h4>
-            <p class="topic-text">
-              <%= @profile.introduce %>
-            </p>
-            <% @topics.each do |topic|%>
-              <div class="topic-index-single">
-               <h3 class="topic-text">
-                <%= topic.description %>
-               </h3>
-                <%= image_tag topic.image.url %>
-                 <% if !topic.favorite_users.include?(current_user) %>
-                  <%= link_to favorites_path(topic_id: topic.id), method: :post do %>
-                   <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
-                  <% end %>
-                  <nobr><%= topic.favorite_users.size %></nobr>
-                 <% else %>
-                  <%= link_to favorites_path(topic_id: topic.id), method: :delete do %>
-                   <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon-liked' %>
-                  <% end %>
-                  <nobr><%= topic.favorite_users.size %></nobr>
-                 <% end %>
-                
-                <%= link_to new_comment_path(topic_id: topic.id) do %> 
-                　<%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
-                <% end %>
-                <% if topic.user_id == current_user.id %>
-                 <%= link_to edit_topic_path(topic.id) do %>
-                  <%= image_tag 'icons/edit.png', class: 'topic-index-icon' %>
-                 <% end %>
-                 <%= link_to topic_path(topic.id), method: :delete, data: {confirm: "削除しますか？"} do %> 
-              　   <%= image_tag 'icons/delete.png', class: 'topic-index-icon' %>
-                 <% end %>
-                <% end %>  
-
-                <h4 class="topic-text">コメント</h4>
+             <div class="topic-index-single">
+                <h2 class="topic-author">
+                  <%= @user.name %>
+                </h2>
+                <div class="profile-image">
+                 <%= image_tag @profile.profile_image.url %> 
+                </div>
+                <p class="show_number">フォロー数: <%=link_to @user.followings.size, followings_user_path(@user) %> / フォロワー数: <%=link_to @user.followers.size, followers_user_path(@user) %> </p>
+                <h4 class="topic-text">居住地</h4>
                 <p class="topic-text">
-                  <% topic.comments.each do |comment| %>
-                   <br><%= comment.user.name %>: <%= comment.sentence %></br>
+                  <%= @profile.place %>
+                </p>
+                <h4 class="topic-text">一言</h4>
+                <p class="topic-text">
+                  <%= @profile.introduce %>
+                </p>
+                <% if current_user.id != @user.id %>
+                  <% if @follow_flag == false %>
+                    <%= link_to 'フォロー', follows_path(@user), method: :post, class: "btn btn-primary follow_button" %>
+                  <% else %>
+                    <%= link_to 'フォロー中', follow_path(@follow), method: :delete, class: "btn btn-danger follow_button" %>
                   <% end %>
-              </div>
-            <% end %>
-
-            </p> 
-          </div>
+                <% end %>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>    
 </div>
+
+<%= render 'layouts/list', topics: @topics, flag: @flag %>
