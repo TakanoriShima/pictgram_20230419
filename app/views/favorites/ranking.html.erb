@@ -1,6 +1,7 @@
 <div class="topic-index-wrapper">
   <div class="container">
     <% i = 1 %>
+    <% offset = 0 %>
     <% before_count = @topics.first.favorite_users.count %>
     <% @topics.each do |topic| %>
       <div class="row">
@@ -9,7 +10,10 @@
             <% if @flag %>
             <% 
               if topic.favorite_users.count < before_count
-                i = i + 1
+                i = i + offset
+                offset = 0
+              else
+                offset = offset + 1  
               end
               before_count = topic.favorite_users.count
             %>
